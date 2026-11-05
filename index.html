@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08111f">
+<title>C-Quest: Learn & Play</title>
+<style>
+:root{--bg:#07111f;--panel:#101e30;--panel2:#14253a;--line:#243a52;--text:#edf5ff;--muted:#9cb0c8;--cyan:#63d7e8;--green:#8be0b0;--gold:#f2c879;--red:#ff8790}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#12324a 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.55 Inter,Segoe UI,system-ui,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}.wrap{max-width:1120px;margin:auto;padding:28px 20px 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:32px}.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#65d9e9,#65b7a5);color:#06121c;display:grid;place-items:center;font-weight:900;font-size:21px}.brand h1{font-size:20px;margin:0;letter-spacing:.2px}.brand small{color:var(--muted)}.stats{display:flex;gap:10px}.pill{border:1px solid var(--line);background:#0d1b2b;padding:8px 13px;border-radius:999px;color:var(--muted);font-size:13px}.hero{padding:36px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(125deg,#122a3c,#101c2d 60%,#132b36);margin-bottom:28px;position:relative;overflow:hidden}.hero:after{content:"</>";position:absolute;right:34px;top:8px;font-size:130px;font-weight:900;color:#b5eff0;opacity:.06}.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.hero h2{font-size:clamp(30px,5vw,48px);line-height:1.1;margin:12px 0}.hero p{max-width:620px;color:var(--muted);margin:0 0 22px}.btn{border:0;border-radius:12px;padding:11px 17px;background:var(--cyan);color:#06121c;font-weight:800}.btn.secondary{background:#1c3046;color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.4;cursor:not-allowed}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:30px 0 14px}.section-head h3{margin:0;font-size:21px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.tile{border:1px solid var(--line);background:var(--panel);padding:20px;border-radius:17px;text-align:left;color:var(--text);transition:.18s}.tile:hover{transform:translateY(-3px);border-color:#5abfcf;background:var(--panel2)}.tile .emoji{font-size:25px}.tile h4{margin:9px 0 3px;font-size:17px}.tile p{margin:0;color:var(--muted);font-size:13px}.mode-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.mode-grid .tile{min-height:160px}.footer{color:#71869e;text-align:center;margin-top:42px;font-size:12px}.screen{display:none}.screen.active{display:block}.back{background:none;border:0;color:var(--cyan);padding:5px 0;margin-bottom:15px}.lesson{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:24px;margin-top:12px}.lesson h2{margin-top:0}.lesson h3{color:var(--cyan);margin-bottom:7px}.lesson pre,.code{white-space:pre-wrap;background:#07111d;border:1px solid #24374b;border-radius:12px;padding:15px;color:#d5f0ed;overflow:auto;font:14px/1.6 ui-monospace,Consolas,monospace}.lesson p,.lesson li{color:#c3d2e2}.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}.level{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:16px 10px;border-radius:14px;text-align:center}.level strong{display:block;font-size:20px}.level small{color:var(--muted)}.level.locked{opacity:.4;cursor:not-allowed}.quizbox{max-width:760px;margin:10px auto;border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:24px}.quiztop{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.bar{height:7px;background:#24364a;border-radius:9px;margin:15px 0 24px;overflow:hidden}.bar span{display:block;height:100%;background:var(--cyan);width:0;transition:.2s}.question{font-size:22px;line-height:1.35;margin:14px 0}.answers{display:grid;gap:10px;margin-top:20px}.answer{border:1px solid var(--line);background:#0c1928;color:var(--text);padding:13px 15px;border-radius:12px;text-align:left}.answer:hover{border-color:var(--cyan)}.answer.correct{border-color:var(--green);background:#143528}.answer.wrong{border-color:var(--red);background:#3a2029}.feedback{min-height:44px;color:var(--muted);margin:15px 0}.result{text-align:center;padding:25px}.result .score{font-size:56px;font-weight:900;color:var(--green)}.hide{display:none!important}
+@media(max-width:800px){.mode-grid{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.hero{padding:25px}.levels{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.wrap{padding:18px 13px 40px}.top{align-items:flex-start;flex-direction:column}.grid,.mode-grid{grid-template-columns:1fr}.hero h2{font-size:32px}.quizbox{padding:17px}.question{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">C</div><div><h1>C-Quest: Learn & Play</h1><small>Learn C. Think logically. Level up.</small></div></div><div class="stats"><span class="pill">⭐ Total XP: <b id="xp">0</b></span><span class="pill">🏆 Levels cleared: <b id="cleared">0</b></span></div></header>
+<main>
+<section id="home" class="screen active">
+<div class="hero"><div class="eyebrow">Interactive C programming playground</div><h2>Turn C fundamentals<br>into a quest.</h2><p>Explore five bite-sized lessons, then challenge yourself with quizzes, output puzzles, bug hunts and code-completion rounds.</p><button class="btn" onclick="document.getElementById('lessons').scrollIntoView({behavior:'smooth'})">Start learning ↓</button></div>
+<div class="section-head" id="lessons"><div><h3>Learn the fundamentals</h3><p>Choose a lesson to explore the concept and examples.</p></div></div>
+<div class="grid" id="lessonGrid"></div>
+<div class="section-head"><div><h3>Choose your game mode</h3><p>Each mode has five levels, from Easy to Grandmaster.</p></div></div>
+<div class="grid mode-grid" id="modeGrid"></div>
+</section>
+<section id="lessonScreen" class="screen"><button class="back" onclick="show('home')">← Back to home</button><div id="lessonContent"></div></section>
+<section id="levelsScreen" class="screen"><button class="back" onclick="show('home')">← Back to home</button><div class="eyebrow">Choose your challenge</div><h2 id="modeTitle"></h2><p style="color:var(--muted)">Score at least 6/10 to unlock the next level.</p><div class="levels" id="levelGrid"></div></section>
+<section id="quizScreen" class="screen"><button class="back" onclick="show('levelsScreen')">← Back to levels</button><div class="quizbox" id="quizBox"></div></section>
+</main><div class="footer">C-Quest browser edition · Built for curious C learners</div>
+</div>
+<script>
+const lessons=[
+{title:"Data Types & Variables",icon:"📦",desc:"Store information using the right type.",html:`<h3>What is a variable?</h3><p>A variable is a named storage location. A data type tells C what kind of value it can hold.</p><pre>int age = 20;          // whole number
+float price = 99.5;    // decimal number
+double pi = 3.14159;   // more precision
+char grade = 'A';      // one character</pre><h3>Useful format specifiers</h3><ul><li><b>%d</b> — int</li><li><b>%f</b> — float</li><li><b>%lf</b> — double in scanf</li><li><b>%c</b> — char</li></ul><h3>Remember</h3><p>Variable names cannot contain spaces, cannot begin with a digit, and C is case-sensitive. Most statements end with a semicolon.</p><pre>printf("%d", age);
+scanf("%d", &age);</pre>`},
+{title:"Operators",icon:"➕",desc:"Calculate, compare and combine values.",html:`<h3>Arithmetic operators</h3><pre>+  addition       -  subtraction
+*  multiplication /  division
+%  remainder</pre><p>Integer division drops the decimal part: <code>7 / 2</code> gives <b>3</b>, while <code>7 / 2.0</code> gives <b>3.5</b>.</p><h3>Comparison and logic</h3><pre>== equal          != not equal
+>  greater        <  less
+&& AND            || OR
+!  NOT</pre><h3>Assignment shortcuts</h3><pre>x += 5;   // same as x = x + 5
+i++;      // increase i by 1
+i--;      // decrease i by 1</pre><p>Use <code>==</code> to compare. A single <code>=</code> assigns a value.</p>`},
+{title:"if-else",icon:"🔀",desc:"Teach your program to make decisions.",html:`<h3>Decision making</h3><p>An if-else statement runs code depending on whether a condition is true or false.</p><pre>if (marks >= 80) {
+    printf("A+");
+} else if (marks >= 70) {
+    printf("A");
+} else {
+    printf("Keep practising");
+}</pre><h3>Key points</h3><ul><li>Conditions go inside parentheses.</li><li>Conditions are checked from top to bottom.</li><li>The else block runs when previous conditions are false.</li><li>In C, 0 is false; non-zero values are true.</li></ul>`},
+{title:"Loops",icon:"🔁",desc:"Repeat instructions without repeating code.",html:`<h3>Three common loops</h3><pre>// for: when the number of repeats is known
+for (int i = 1; i <= 3; i++) {
+    printf("%d ", i);
+}
+
+// while: checks before each round
+int n = 1;
+while (n <= 3) { n++; }
+
+// do-while: runs at least once
+do { n--; } while (n > 0);</pre><h3>Loop controls</h3><p><b>break</b> exits a loop. <b>continue</b> skips to the next round. Remember to update your loop variable to avoid an unintended infinite loop.</p>`},
+{title:"Arrays",icon:"🧺",desc:"Keep multiple values of the same type together.",html:`<h3>Array basics</h3><p>An array stores several values of the same type under one name. Indexing starts at zero.</p><pre>int marks[5] = {10, 20, 30, 40, 50};
+
+printf("%d", marks[0]); // 10
+printf("%d", marks[4]); // 50</pre><h3>Loop through an array</h3><pre>for (int i = 0; i < 5; i++) {
+    printf("%d ", marks[i]);
+}</pre><p>For an array of size 5, valid indexes are 0 to 4. Accessing index 5 is out of bounds.</p>`}
+];
+const names=["Classic Quiz","Guess the Output","Bug Hunter","Fill in the Blank"];
+const icons=["🧠","🖥️","🐛","🧩"];
+const blurbs=["Test your C fundamentals.","Predict what a code snippet prints.","Spot the mistake in a code sample.","Complete the missing piece of code."];
+const ranks=["Easy","Pro","Ultra-Pro","Legendary","Grandmaster"];
+const banks=[
+[
+["Which symbol ends most C statements?",[".",",",":",";"],3,"Most C statements end with a semicolon."],
+["Which type stores whole numbers?",["float","int","char","double"],1,"int is used for whole-number values."],
+["Which function prints output?",["scanf()","input()","printf()","show()"],2,"printf() displays formatted output."],
+["Which header is needed for printf()?",["<math.h>","<stdio.h>","<string.h>","<time.h>"],1,"printf() is declared in stdio.h."],
+["Which type stores one character?",["char","int","float","void"],0,"char stores a single character."],
+["Which is a valid variable name?",["2marks","my marks","int","marks_2"],3,"Underscores are allowed; spaces and leading digits are not."],
+["Which symbol starts a single-line comment?",["##","//","<!--","**"],1,"C uses // for a single-line comment."],
+["What does scanf() do?",["Prints output","Reads input","Ends a loop","Declares an array"],1,"scanf() reads formatted input."],
+["Which operator means multiplication?",["x","*","%","&"],1,"The multiplication operator in C is *."],
+["What does const mean?",["The value cannot be changed","The variable is global","The value is zero","The type is unknown"],0,"const makes an object read-only through that identifier."]
+],
+[
+["What is the value of 7 / 2 when both operands are int?",["2","3","3.5","4"],1,"Integer division truncates the fractional part."],
+["What is 17 % 5?",["3","2","3.4","12"],1,"17 divided by 5 leaves remainder 2."],
+["What does x += 5 mean?",["x = 5","x == 5","x = x + 5","x = x - 5"],2,"The compound assignment adds 5 to x."],
+["What does ++a do?",["Uses then increments","Increments then uses","Decreases by 1","Sets a to zero"],1,"Prefix increment changes the value before it is used."],
+["What is 2 + 3 * 4?",["20","14","24","9"],1,"Multiplication has higher precedence than addition."],
+["Which operator means AND?",["||","!","&&","=="],2,"&& is logical AND."],
+["Which value is false in C?",["-1","1","0","Any non-zero value"],2,"Zero is false; non-zero is true."],
+["Which operator checks equality?",["=","==","!=","<="],1,"== compares two values."],
+["What is the result of 9 % 4?",["1","2","2.25","0"],0,"The remainder is 1."],
+["If a=5, what is b after b=a++?",["b=6, a=6","b=5, a=6","b=5, a=5","b=6, a=5"],1,"Post-increment uses the old value, then increments a."]
+],
+[
+["Which loop runs its body at least once?",["for","while","do-while","None"],2,"do-while checks its condition after the body."],
+["For int a[5], what are valid indexes?",["1 to 5","0 to 4","0 to 5","1 to 4"],1,"Array indexes start at zero."],
+["What happens if a while-loop condition never becomes false?",["It runs once","It may loop forever","It will not compile","It skips the body"],1,"Without a stopping condition or update, the loop can be infinite."],
+["Which keyword exits a loop?",["continue","skip","break","stop"],2,"break exits the nearest loop."],
+["Which keyword skips to the next loop round?",["break","continue","return","next"],1,"continue skips the remaining statements in the current iteration."],
+["How many times does a nested loop run if outer repeats 3 times and inner 4 times?",["7","4","12","3"],2,"The inner body runs 3 × 4 = 12 times."],
+["What does if (x = 5) do?",["Compares x with 5","Assigns 5 to x","Checks if x is not 5","Causes a syntax error always"],1,"A single equals sign is assignment, not comparison."],
+["What is wrong with if (x > 5); ?",["Nothing","The semicolon ends the if statement","Missing parentheses","Wrong operator"],1,"That semicolon creates an empty if statement."],
+["Which loop is useful when repeats are known?",["for","while only","do-while only","switch"],0,"A for loop groups initialization, condition and update."],
+["What does an array index start at?",["-1","1","0","Depends on value"],2,"C arrays are zero-indexed."]
+],
+[
+["Which declaration creates an array of 10 integers?",["int a(10);","int a[10];","array int a;","int[10] a;"],1,"The size goes inside square brackets."],
+["What is a[4] after int a[5]={1,2}; ?",["2","Undefined","0","1"],2,"Unspecified remaining elements are initialized to zero."],
+["What is the issue with accessing a[3] in int a[3]?",["No issue","Index is out of bounds","Array must be float","Missing pointer"],1,"The valid indexes are 0, 1 and 2."],
+["Which loop visits all elements of int a[6]?",["i=0; i<=6; i++","i=1; i<=6; i++","i=0; i<6; i++","i=6; i>6; i--"],2,"Start at zero and stop before the size."],
+["What does sizeof(a) return for an array a?",["Its memory size in bytes","Its last value","Its number of loops","Its address as text"],0,"sizeof returns the size in bytes."],
+["How do you access the third element?",["a[3]","a[2]","a(2)","a{2}"],1,"The third element has index 2."],
+["Which pattern finds the largest value?",["Start max=a[0], compare each element","Set max=0 always","Use a[ size ]","Add all elements"],0,"Compare each element against the current maximum."],
+["Can you assign one whole C array to another using b=a?",["Yes, always","No, copy elements individually","Only for char arrays","Only if size is 10"],1,"C does not support whole-array assignment."],
+["What is a common way to calculate an average?",["sum / count","sum * count","count - sum","sum % count"],0,"Divide the sum by the number of elements."],
+["What is an out-of-bounds access?",["Using a valid index","Accessing outside the array limits","Sorting an array","Printing an array"],1,"Only indexes within the array bounds are valid."]
+]
+];
+const state=JSON.parse(localStorage.getItem("cquest-progress")||'{"xp":0,"best":{}}');
+let currentMode=0,currentLevel=0,questions=[],qIndex=0,score=0,answered=false;
+function save(){localStorage.setItem("cquest-progress",JSON.stringify(state));updateStats()}
+function updateStats(){document.getElementById("xp").textContent=state.xp;document.getElementById("cleared").textContent=Object.keys(state.best).filter(k=>state.best[k]>=6).length}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function init(){
+ document.getElementById("lessonGrid").innerHTML=lessons.map((l,i)=>'<button class="tile" onclick="openLesson('+i+')"><span class="emoji">'+l.icon+'</span><h4>'+l.title+'</h4><p>'+l.desc+'</p></button>').join("");
+ document.getElementById("modeGrid").innerHTML=names.map((n,i)=>'<button class="tile" onclick="openMode('+i+')"><span class="emoji">'+icons[i]+'</span><h4>'+n+'</h4><p>'+blurbs[i]+'</p></button>').join("");
+ updateStats();
+}
+function openLesson(i){const l=lessons[i];document.getElementById("lessonContent").innerHTML='<div class="eyebrow">C fundamentals · Lesson '+(i+1)+'</div><div class="lesson"><h2>'+l.icon+' '+l.title+'</h2>'+l.html+'<button class="btn secondary" onclick="show(\'home\')">Back to lessons</button></div>';show("lessonScreen")}
+function openMode(i){currentMode=i;document.getElementById("modeTitle").textContent=icons[i]+" "+names[i];drawLevels();show("levelsScreen")}
+function drawLevels(){document.getElementById("levelGrid").innerHTML=ranks.map((r,i)=>{let key=currentMode+"-"+i,unlocked=i===0||state.best[currentMode+"-"+(i-1)]>=6,best=state.best[key];return '<button class="level '+(unlocked?'':'locked')+'" '+(unlocked?'onclick="startLevel('+i+')"':'disabled')+'><strong>'+(unlocked?'🔓':'🔒')+'</strong><b>Level '+(i+1)+'</b><br><small>'+r+'</small><br><small>'+(best===undefined?'Not played':'Best: '+best+'/10')+'</small></button>'}).join("")}
+function makeQuestions(){
+ let base=banks[currentLevel];let modeExtra=[
+ ["What does return 0; usually indicate in main?",["Program ended successfully","Start a loop","Print zero","Read input"],0,"It conventionally signals successful completion."],
+ ["Which header declares strlen()?",["stdio.h","string.h","stdlib.h","math.h"],1,"strlen is declared in string.h."],
+ ["What does a function parameter do?",["Receives a value from a caller","Ends a program","Creates a loop","Prints a string"],0,"Parameters receive values passed to a function."]
+ ];
+ let qs=base.map(q=>({q:q[0],a:q[1],c:q[2],e:q[3]}));
+ let extras=modeExtra;
+ if(currentMode===0)return qs;
+ if(currentMode===1)return [
+ ["int x=4; printf(\"%d\", x+3);",["4","7","43","3"],1,"x + 3 is 7."],
+ ["int x=7/2; printf(\"%d\",x);",["3","3.5","4","2"],0,"Integer division produces 3."],
+ ["int i; for(i=1;i<=3;i++) printf(\"%d\",i);",["123","012","321","111"],0,"The loop prints 1, then 2, then 3."],
+ ["int a=5; printf(\"%d\",a++);",["6","5","4","0"],1,"Post-increment prints the old value first."],
+ ["int a=5; printf(\"%d\",++a);",["5","6","4","0"],1,"Pre-increment changes a before printing."],
+ ["printf(\"%d\", 17%5);",["3","2","5","1"],1,"The remainder of 17 divided by 5 is 2."],
+ ["int x=2; if(x>1) printf(\"Yes\"); else printf(\"No\");",["No","Yes","2","Error"],1,"2 is greater than 1."],
+ ["int a[3]={2,4,6}; printf(\"%d\",a[1]);",["2","4","6","1"],1,"Index 1 refers to the second element."],
+ ["int s=0; for(int i=1;i<=3;i++) s+=i; printf(\"%d\",s);",["3","5","6","7"],2,"1 + 2 + 3 = 6."],
+ ["int i=0; while(i<2){printf(\"%d\",i);i++;}",["12","01","00","2"],1,"The loop prints 0 and then 1."]
+ ].map(q=>({q:q[0],a:q[1],c:q[2],e:q[3]}));
+ if(currentMode===2)return [
+ ["int x=5; if(x=5) printf(\"OK\");",["Line 1: assignment used instead of comparison","No bug","Missing semicolon","Wrong data type"],0,"Use == when you want to compare x with 5."],
+ ["for(int i=0;i<5;i++); printf(\"Hi\");",["Missing braces","Extra semicolon after for","Wrong variable","No bug"],1,"The semicolon makes the loop body empty."],
+ ["int a[3]={1,2,3}; printf(\"%d\",a[3]);",["Array index is out of bounds","Missing include","Wrong format specifier","No bug"],0,"A three-element array has indexes 0, 1 and 2."],
+ ["while(x<5){ printf(\"%d\",x); }",["Missing update to x (if none elsewhere)","Wrong brackets","printf is invalid","No bug"],0,"If x never changes, the condition may remain true forever."],
+ ["int age=18; if age>=18 printf(\"Adult\");",["Missing parentheses around condition","Wrong type","Missing return","No bug"],0,"The if condition must be inside parentheses."],
+ ["int n=10; if(n%2=0) printf(\"Even\");",["Use == instead of =","Use / instead of %","Missing braces","No bug"],0,"Comparison requires ==."],
+ ["int a[5]; printf(\"%d\",a[5]);",["Out-of-bounds index","Missing loop","Wrong format","No bug"],0,"The final valid index is 4."],
+ ["int i=0; do {i++;} while(i<3)",["Missing semicolon after while condition","Wrong loop type","Missing initialization","No bug"],0,"A do-while statement ends with a semicolon."],
+ ["int x=3; printf(\"%f\",x);",["Format specifier does not match int","Missing semicolon","x must be global","No bug"],0,"Use %d to print an int."],
+ ["int x=4; if(x>2) printf(\"Yes\")",["Missing semicolon after printf statement","Wrong comparison","Wrong data type","No bug"],0,"The printf statement needs a semicolon."]
+ ].map(q=>({q:q[0],a:q[1],c:q[2],e:q[3]}));
+ return [
+ ["int age = ___;",["int","if","for","return"],0,"int is the data type for whole numbers."],
+ ["printf(\"%d\", ___);",["age","&age","%age","scanf"],0,"printf prints the value of age."],
+ ["scanf(\"%d\", ___);",["age","&age","*age","%d"],1,"scanf needs the address of the variable."],
+ ["if (x ___ 5)",["=","==","&&","%"],1,"Use == to compare equality."],
+ ["for(i=0; i<5; ___)",["i++","i==","i<","break"],0,"i++ increments the loop counter."],
+ ["int marks[5]; marks[___] = 90;",["5","1.5","0","-2"],2,"Index 0 is a valid first position."],
+ ["int a = 17 ___ 5;",["/","%","*","+"],1,"% gives the remainder."],
+ ["while(i<5) { i___; }",["++","==","=","%"],0,"Incrementing i moves the loop toward completion."],
+ ["char grade = ___A___;",["double quotes","single quotes","brackets","no quotes"],1,"A character literal uses single quotes."],
+ ["___ (x>0) { printf(\"Positive\"); }",["for","if","int","char"],1,"if runs a block when its condition is true."]
+ ].map(q=>({q:q[0],a:q[1],c:q[2],e:q[3]}));
+}
+function startLevel(level){currentLevel=level;questions=makeQuestions();qIndex=0;score=0;drawQuestion();show("quizScreen")}
+function drawQuestion(){
+ answered=false;let q=questions[qIndex],progress=(qIndex/10)*100;
+ document.getElementById("quizBox").innerHTML='<div class="quiztop"><span>'+names[currentMode]+' · '+ranks[currentLevel]+'</span><span>Question '+(qIndex+1)+' / 10</span></div><div class="bar"><span style="width:'+progress+'%"></span></div><div class="question">'+q.q.replaceAll("<","&lt;").replaceAll(">","&gt;")+'</div><div class="answers">'+q.a.map((a,i)=>'<button class="answer" onclick="choose('+i+')" id="ans'+i+'"><b>'+String.fromCharCode(65+i)+'.</b> '+a.replaceAll("<","&lt;").replaceAll(">","&gt;")+'</button>').join("")+'</div><div class="feedback" id="feedback">Choose the best answer.</div><button class="btn hide" id="next" onclick="nextQuestion()">'+(qIndex===9?'See results':'Next question →')+'</button>';
+}
+function choose(i){if(answered)return;answered=true;let q=questions[qIndex];document.querySelectorAll(".answer").forEach((b,n)=>{b.disabled=true;if(n===q.c)b.classList.add("correct");else if(n===i)b.classList.add("wrong")});if(i===q.c){score++;document.getElementById("feedback").textContent="✓ Correct! "+q.e}else{document.getElementById("feedback").textContent="Not quite. "+q.e}document.getElementById("next").classList.remove("hide")}
+function nextQuestion(){qIndex++;if(qIndex<10){drawQuestion();return}let key=currentMode+"-"+currentLevel;state.best[key]=Math.max(state.best[key]||0,score);state.xp+=score*10;save();let unlocked=currentLevel===0||state.best[currentMode+"-"+(currentLevel-1)]>=6;document.getElementById("quizBox").innerHTML='<div class="result"><div class="eyebrow">Quest complete</div><h2>'+(score>=6?'Level cleared!':'Good effort — keep practising')+'</h2><div class="score">'+score+'/10</div><p style="color:var(--muted)">'+(score>=6?'You earned '+(score*10)+' XP.':'You need 6/10 to unlock the next level. Review the lesson and try again.')+'</p><button class="btn" onclick="drawLevels();show(\'levelsScreen\')">Back to levels</button> <button class="btn secondary" onclick="startLevel('+currentLevel+')">Try again</button></div>';drawLevels()}
+init();
+</script>
+</body>
+</html>
