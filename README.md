@@ -1,6 +1,6 @@
 # C-Quest: Learn & Play
 
-An interactive, console-based C programming game designed to help beginners learn core programming concepts and practise them through quizzes and coding challenges.
+An interactive C programming project with a console edition and a browser-playable edition. Learn core programming concepts through lessons, quizzes, output puzzles, bug hunts and code-completion rounds.\n\n**[▶ Play C-Quest in your browser](https://aeloneboy210-hash.github.io/C-Quest-Learn-Play/)** *(available after GitHub Pages is enabled; see setup below).*
 
 ## Learning Lessons
 
